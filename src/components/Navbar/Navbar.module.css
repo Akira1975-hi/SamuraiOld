@@ -1,0 +1,16 @@
+
+.wrapper {
+  background-color: burlywood;
+}
+.nav {
+  grid-area: n;
+
+}
+
+.item a{
+  color: aliceblue;
+}
+
+.item.activeLink {
+  color: gold;
+}

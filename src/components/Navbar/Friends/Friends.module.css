@@ -1,0 +1,12 @@
+.friends {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.title {
+  align-self: start;
+}
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+}
