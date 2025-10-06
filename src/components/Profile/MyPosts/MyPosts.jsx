@@ -1,6 +1,8 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post.jsx';
+import { addPostActionCreator } from '../../../redux/profile-reducer.js';
+import { updateNewPostTextActionCreator } from '../../../redux/profile-reducer.js';
 
 const MyPosts = (props) => {
   const { posts, newPostText } = props.profilePage;

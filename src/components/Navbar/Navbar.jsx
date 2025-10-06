@@ -4,7 +4,9 @@ import { NavLink } from 'react-router-dom';
 import Friends from './Friends/Friends.jsx';
 
 const Navbar = ({ state }) => {
-  const { friends } = state;
+  // debugger;
+  // const { friends } = state;
+  const { friends = [] } = state ?? {};
   function activeItem(isActive) {
     return isActive ? `${s.item} ${s.activeLink}` : s.item;
   }
