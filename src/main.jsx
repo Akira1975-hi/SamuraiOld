@@ -5,16 +5,23 @@ import './index.css';
 import App from './App.jsx';
 
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from './StoreContext.jsx';
+
 const root = createRoot(document.getElementById('root'));
 
 let rerenderEntireTree = () => {
-  const state = store.getState();
   root.render(
     <BrowserRouter>
-      <App state={state} dispatch={store.dispatch} />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </BrowserRouter>,
   );
 };
 
 rerenderEntireTree(store.getState());
-store.subscribe(rerenderEntireTree);
+
+store.subscribe(() => {
+  let state = store.getState();
+  rerenderEntireTree(state);
+});

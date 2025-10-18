@@ -1,12 +1,12 @@
 import s from './Navbar.module.css';
 import { NavLink } from 'react-router-dom';
 
-import Friends from './Friends/Friends.jsx';
+import FriendsContainer from './Friends/FriendsContainer.jsx';
 
-const Navbar = ({ state }) => {
+const Navbar = () => {
   // debugger;
   // const { friends } = state;
-  const { friends = [] } = state ?? {};
+  // const { friends = [] } = state ?? {};
   function activeItem(isActive) {
     return isActive ? `${s.item} ${s.activeLink}` : s.item;
   }
@@ -42,7 +42,7 @@ const Navbar = ({ state }) => {
           </NavLink>
         </div>
       </nav>
-      <Friends friends={friends} />
+      <FriendsContainer />
     </div>
   );
 };

@@ -85,6 +85,7 @@ let store = {
   getState() {
     return this._state;
   },
+
   subscribe(observer) {
     this._callSubscriber = observer; // observer это паттерн (по такому паттерну работает addEventListener)
   },
