@@ -1,4 +1,3 @@
-// const initialState = { friends: [] };
 const initialState = {
   friends: [
     {

@@ -1,0 +1,82 @@
+.blockUser {
+  display: flex;
+  margin: 25px;
+  gap: 15px;
+
+}
+
+.blockFollow {
+  display: flex;
+  flex-direction: column;
+}
+
+.photoFrame {
+
+
+
+}
+
+.photo {
+  width: 60px !important;
+  border-radius: 15px;
+}
+
+.button {
+  background-color: darkgreen;
+  color: white;
+}
+
+.button:disabled,
+.button[disabled] {
+  background: #ccc;
+  color: #666;
+  border-color: #bbb;
+}
+
+.blockData {
+  font-size: large;
+  font-weight: bold;
+  background-color: darkgray;
+  width: 400px;
+  padding: 15px 15px;
+  padding-bottom: 1px;
+  display: flex;
+  justify-content: space-between;
+
+  border: 1px solid black;
+  border-radius: 15px;
+}
+
+.blockData_left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.blockData_right {
+  padding: 15px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.name {}
+
+.status {}
+
+.country {}
+
+.city {}
+
+.selectedPage {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.ordinaryPage {
+  cursor: pointer;
+}
+
+#preloader {
+  width: 100px;
+}

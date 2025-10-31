@@ -5,23 +5,14 @@ import './index.css';
 import App from './App.jsx';
 
 import { BrowserRouter } from 'react-router-dom';
-import { Provider } from './StoreContext.jsx';
+import { Provider } from 'react-redux';
 
 const root = createRoot(document.getElementById('root'));
 
-let rerenderEntireTree = () => {
-  root.render(
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>,
-  );
-};
-
-rerenderEntireTree(store.getState());
-
-store.subscribe(() => {
-  let state = store.getState();
-  rerenderEntireTree(state);
-});
+root.render(
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
+);
