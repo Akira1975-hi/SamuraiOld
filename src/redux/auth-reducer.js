@@ -1,3 +1,5 @@
+import { authAPI } from '../components/api/api.js';
+
 const SET_USER_DATA = 'SET_USER_DATA';
 
 // const initialState = { posts: [], newPostText: '' };
@@ -27,5 +29,16 @@ export const setAuthUserData = (id, email, login) => ({
   type: SET_USER_DATA,
   data: { id, email, login },
 });
+
+export const getAuthUserData = () => {
+  return (dispatch) => {
+    authAPI.getAuth().then((response) => {
+      if (response.data.resultCode === 0) {
+        let { id, login, email } = response.data.data;
+        dispatch(setAuthUserData(id, email, login)); // последовательность аргументов имеет значение и зависит от setAuthUserData в auth-reducer.js
+      }
+    });
+  };
+};
 
 export default authReducer;

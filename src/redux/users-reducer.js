@@ -1,3 +1,5 @@
+import { usersAPI } from '../components/api/api.js';
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -65,8 +67,8 @@ const usersReducer = (state = initialState, action) => {
 };
 
 // AC - Action Creator  ----    followActionCreator ->  followAC
-export const follow = (userId) => ({ type: FOLLOW, userId });
-export const unfollow = (userId) => ({ type: UNFOLLOW, userId });
+export const followSuccess = (userId) => ({ type: FOLLOW, userId });
+export const unfollowSuccess = (userId) => ({ type: UNFOLLOW, userId });
 export const setUsers = (users) => ({ type: SET_USERS, users });
 export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
 export const setTotalUsersCount = (totalUsersCount) => ({
@@ -84,4 +86,43 @@ export const toggleFollowingProgress = (isFetching, userId) => ({
   userId,
 });
 
+export const getUsers = (currentPage, pageSize) => {
+  return (dispatch) => {
+    dispatch(toggleIsFetching(true));
+
+    usersAPI.getUsers(currentPage, pageSize).then((data) => {
+      dispatch(toggleIsFetching(false));
+      dispatch(setUsers(data.items));
+      dispatch(setTotalUsersCount(data.totalCount));
+    });
+  };
+};
+export const follow = (userId) => {
+  return (dispatch) => {
+    dispatch(toggleFollowingProgress(true, userId));
+    usersAPI
+      .setFollow(userId)
+      .then((resultCode) => {
+        if (resultCode == 0) {
+          dispatch(followSuccess(userId));
+        }
+        // props.toggleFollowingProgress(false, u.id);
+      })
+      .finally(() => dispatch(toggleFollowingProgress(false, userId)));
+  };
+};
+export const unfollow = (userId) => {
+  return (dispatch) => {
+    dispatch(toggleFollowingProgress(true, userId));
+    usersAPI
+      .setUnfollow(userId)
+      .then((resultCode) => {
+        if (resultCode == 0) {
+          dispatch(unfollowSuccess(userId));
+        }
+        // props.toggleFollowingProgress(false, u.id);
+      })
+      .finally(() => dispatch(toggleFollowingProgress(false, userId)));
+  };
+};
 export default usersReducer;

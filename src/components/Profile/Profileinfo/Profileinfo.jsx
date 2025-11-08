@@ -1,6 +1,7 @@
 import s from './ProfileInfo.module.css';
 import Preloader from '../../common/Preloader/Preloader.jsx';
 import userPhoto from './../../../assets/images/user.png';
+import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -11,12 +12,12 @@ const ProfileInfo = (props) => {
 
   return (
     <div>
-      <div>
-        <img
-          src="https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350"
-          alt="nature photo"
-        />
-      </div>
+      {/*<div>*/}
+      {/*  <img*/}
+      {/*    src="https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350"*/}
+      {/*    alt="nature photo"*/}
+      {/*  />*/}
+      {/*</div>*/}
       <div className={s.descriptionBlock}>
         <div className={s.blockDesc}>
           <div className={s.photo}>
@@ -24,6 +25,7 @@ const ProfileInfo = (props) => {
               src={props.profile.photos.large ? props.profile.photos.large : userPhoto}
               alt="photo"
             ></img>
+            <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
           </div>
           <div className={s.dataUser}>
             <h2 className={s.title}>{props.profile.fullName}</h2>

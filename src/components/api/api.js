@@ -13,16 +13,6 @@ export const usersAPI = {
       return response.data;
     });
   },
-};
-
-export const authAPI = {
-  getAuth() {
-    return instance.get(`auth/me`).then((response) => {
-      return response.data;
-    });
-  },
-};
-export const followAPI = {
   setFollow(userId) {
     return instance.post(`follow/${userId}`, {}).then((response) => {
       return response.data.resultCode;
@@ -33,4 +23,29 @@ export const followAPI = {
       return response.data.resultCode;
     });
   },
+  getProfile(userId) {
+    console.warn('Obsolete method. Please profileAPI object');
+    return profileAPI.getProfile(userId);
+  },
 };
+
+export const profileAPI = {
+  getProfile(userId) {
+    return instance.get(`profile/` + userId).then((response) => {
+      return response.data;
+    });
+  },
+  getStatus(userId) {
+    return instance.get('profile/status/' + userId);
+  },
+  updateStatus(status) {
+    return instance.put('profile/status/', { status });
+  },
+};
+
+export const authAPI = {
+  getAuth() {
+    return instance.get(`auth/me`);
+  },
+};
+// export const followAPI = {};

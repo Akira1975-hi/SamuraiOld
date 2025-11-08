@@ -5,6 +5,9 @@ import {
 import Dialogs from './Dialogs.jsx';
 import { connect } from 'react-redux';
 
+import { withAuthRedirect } from '../hoc/withAuthRedirect.jsx';
+import { compose } from 'redux';
+
 let mapStateToProps = (state) => {
   return {
     dialogs: state.dialogsPage.dialogs,
@@ -23,6 +26,17 @@ let mapDispatchToProps = (dispatch) => {
   };
 };
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+// let AuthRedirectComponent = (props) => {
+//   if (!this.props.isAuth) return <Navigate to={'/login'} />;
+//   return <Dialogs {...props} />;
+// };
 
-export default DialogsContainer;
+// compose(connect(mapStateToProps, mapDispatchToProps), withAuthRedirect)(Dialogs);
+
+// let AuthRedirectComponent = withAuthRedirect(Dialogs);
+
+// const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
+
+// export default DialogsContainer;
+
+export default compose(connect(mapStateToProps, mapDispatchToProps), withAuthRedirect)(Dialogs);
